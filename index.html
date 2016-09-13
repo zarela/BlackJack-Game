@@ -14,14 +14,33 @@
       <p>Dealer's cards:</p>
       <p>Player's cards:</p>
     </div>
-    <div class='money-section'>
-      <p>You have: $(Amount)</p>
-    </div>
-    <section>
+    <form class="controls" action="index.html" method="post">
+      <div class='money-section'>
+        <div id="credit"><p>You have: $100.00</p></div>
+        //try with input box
+        <input id="bet" type="text" name="name" placeholder="$10.00 to Start"value="">
+        <input id="bet-button" type="button" name="name" value="BET">
+      </div>
+      <div class="game-buttons">
+        <input id="hit" type="button" name="hit" value="HIT">
+        <input id="stand" type="button" name="stand" value="STAND">
+        <input id="new-hand" type="button" name="new-hand" value="NEW HAND">
+      </div>
+      <div class="start-section">
+        <input id="start" type="button" name="name" value="START">
+      </div>
+      <div class="init-end-control">
+        <input id="reset" type="button" name="name" value="RESET/NEW GAME"><br>
+        <input id="quit"type="button" name="name" value="QUIT GAME">
+      </div>
+    </form>
+
+
+    <!-- <section>
       <button id='hit-button'>HIT</button>
       <button id='stand-button'>STAND</button>
       <button id='newHand-button'>NEW HAND</button>
-    </section>
+    </section> -->
 
   </body>
 </html>
