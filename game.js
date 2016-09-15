@@ -2,13 +2,21 @@
 // Copyright (C) 2016 Zarela Graves under the GNU General Public License.
 
 //Function card where value is the card number and points represents card points for the game
+
+//player constructor to display dealer and player's status
+function Players (backroll, playerCards, finalPoints){
+	this.bankroll = backroll;
+	this.playerCards = playerCards;
+	this.finalPoints = finalPoints;
+}
+//constructor to make a card
 function card(value, name, suit, points){
 	this.value = value;
 	this.name = name;
 	this.suit = suit;
 	this.points = points;
 }
-//Function deck
+//Function to make all cards in a deck
 function deck(){
 	this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 	this.points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
@@ -24,12 +32,16 @@ function deck(){
 }
 
 var App = {
-  // maxSplits: 3,
+
+	player: null,
+	dealer: null,
   minBet: 10,
   maxBet:90,
   initCredit: 100,
   initBet: 10,
+	//retuns all cards in a deck
   allCards: deck(),
+	//returns all cards shuffled
   shuffle: function(deck){
     var shuffledDeck = [];
     // loop over cards, remove a random card from deck, add it to shuffleddeck array
@@ -38,8 +50,17 @@ var App = {
         var randomNumber =  Math.floor(Math.random() * (deck.length ) );
         shuffledDeck.push((deck[randomNumber]));
       }
-      console.log(shuffledDeck);
+      return shuffledDeck;
   },
+	//Updates cards, bankroll and points for dealer and players
+	setup: function (){
+		App.player = new Players();
+		App.dealer = new Players();
+	},
+
+
+
+
 
   dealingCards:function(){
   //   player received 2 cards
@@ -64,25 +85,6 @@ var App = {
     // else if clicks restart
     // else if quits game
   }
-
-	
-
-	// var Playah = function() {
-	//   this.bankroll = 2000000;
-	//   this.car = 'Ferrari';
-	// };
-	//
-	// var App = {
-	//   jayZ: null,
-	//   misterT: null,
-	//
-	//   setup: function {
-	//     App.jayZ = new Playah();
-	//     App.misterT = new Playah();
-	//   }
-	// };
-
-
 
 
 };

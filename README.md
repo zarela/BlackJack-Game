@@ -6,9 +6,9 @@ Capital letters = big objects
 () = functions
 {} = little objects
 
-Player{
+Players{
   bankroll: money,
-  cardsArray: []
+  playerCards: []
   finalPoints: number that adds points on cardsArray
 }  //Contain bankroll and card points
 
