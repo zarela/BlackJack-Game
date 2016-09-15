@@ -50,7 +50,9 @@ var App = {
         var randomNumber =  Math.floor(Math.random() * (deck.length ) );
         shuffledDeck.push((deck[randomNumber]));
       }
+			console.log(shuffledDeck);
       return shuffledDeck;
+
   },
 	//Updates cards, bankroll and points for dealer and players
 	setup: function (){
@@ -58,13 +60,8 @@ var App = {
 		App.dealer = new Players();
 	},
 
-
-
-
-
   dealingCards:function(){
-  //   player received 2 cards
-  //   dealer received one card
+  	// App.shuffle([]).push
 
   },
 
@@ -88,16 +85,23 @@ var App = {
 
 
 };
-App.shuffle(App.allCards);
+// App.shuffle(App.allCards);
 
+var UI = {
+	onClickStart: function(){
+		//Returns an array of shuffled cards;
+		App.shuffle(App.allCards);
+		$(App.shuffle(App.allCards))[0];
+
+
+	}
+}
 
 
 //My event listeners for game buttons
 window.onload = function(){
   //Event handler for starting the game
-  $('#start').on('click', function(){
-    console.log("Hello from Start button");
-  });
+  $('#start').on('click', UI.onClickStart);
   //Event handler for reseting the game or ask for a new game
   $('#reset').on('click', function(){
     console.log("Hello from Reset button");
