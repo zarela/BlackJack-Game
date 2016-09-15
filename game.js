@@ -17,6 +17,8 @@ function card(value, name, suit, points){
 	this.points = points;
 }
 //Function to make all cards in a deck
+var counter = 0;
+
 function deck(){
 	this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 	this.points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
@@ -40,7 +42,7 @@ var App = {
   initCredit: 100,
   initBet: 10,
 	//retuns all cards in a deck
-  allCards: deck(),
+  //*be back** allCards: deck(),
 	//returns all cards shuffled
   shuffle: function(deck){
     var shuffledDeck = [];
@@ -90,9 +92,15 @@ var App = {
 var UI = {
 	onClickStart: function(){
 		//Returns an array of shuffled cards;
-		App.shuffle(App.allCards);
-		$(App.shuffle(App.allCards))[0];
-
+		var shuffled = App.shuffle(deck());
+		//var next = shuffled[counter];
+		counter +=1;
+		// $(App.shuffle(App.allCards))[0];
+		console.log(shuffled[counter]);
+			counter +=1;
+		console.log(shuffled[counter]);
+			counter +=1;
+		console.log(shuffled[counter]);
 
 	}
 }
