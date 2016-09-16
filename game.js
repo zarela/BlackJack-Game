@@ -3,22 +3,22 @@
 
 //Function card where value is the card number and points represents card points for the game
 
-//player constructor to display dealer and player's status
+//Player constructor to display dealer and player's status
 function Players (backroll, playerCards, finalPoints){
 	this.bankroll = backroll;
 	this.playerCards = playerCards;
 	this.finalPoints = finalPoints;
 }
-//constructor to make a card
+//Constructor to make a card
 function card(value, name, suit, points){
 	this.value = value;
 	this.name = name;
 	this.suit = suit;
 	this.points = points;
 }
-//Function to make all cards in a deck
+//Counter is position at zero becasue is the position of the card in the shuffle deck.
 var counter = 0;
-
+//Function to make all cards in a deck
 function deck(){
 	this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 	this.points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
@@ -62,8 +62,14 @@ var App = {
 		App.dealer = new Players();
 	},
 
-  dealingCards:function(){
-  	// App.shuffle([]).push
+  dealingNextCard:function(){
+		var shuffled = this.shuffle(deck());
+
+ 	 //var next = shuffled[counter]; **DNU**
+ 	 counter +=1;
+ 	 console.log(shuffled[counter]);
+ 	 counter +=1;
+ 	 console.log(shuffled[counter]);
 
   },
 
@@ -92,15 +98,17 @@ var App = {
 var UI = {
 	onClickStart: function(){
 		//Returns an array of shuffled cards;
-		var shuffled = App.shuffle(deck());
-		//var next = shuffled[counter];
-		counter +=1;
-		// $(App.shuffle(App.allCards))[0];
-		console.log(shuffled[counter]);
-			counter +=1;
-		console.log(shuffled[counter]);
-			counter +=1;
-		console.log(shuffled[counter]);
+
+		// var shuffled = App.shuffle(deck());
+		//
+		// //var next = shuffled[counter]; **DNU**
+		// counter +=1;
+		// console.log(shuffled[counter]);
+		// counter +=1;
+		// console.log(shuffled[counter]);
+
+
+		console.log(App.dealingNextCard());
 
 	}
 }
