@@ -1,9 +1,12 @@
-# Deeper pseudo-code (in between actual code and orig pseudo code)
+# Pseudo-code and Overview
 
-Syntax:
+## Syntax:
 Capital letters = big objects
+
 [] = arrays
+
 () = functions
+
 {} = little objects
 
 Players{
