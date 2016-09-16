@@ -27,14 +27,25 @@ deck()
 
 Holds game logic and game-related data
 
-allCards[]
-//every card in the shuffled deck; cards are dealt from allCards
+calculateHandValue()
+//calculates points from playerCards array
+
+cleanUp: function()
+// game will finish
+// if user has 0 coins
+// else if clicks restart
+// else if quits game
+
+deal()
+//gives two cards to both player and dealer
 
 dealer{}
 //Player object that represents the dealer
 
-maxBet
+dealerCards:[],
+//Contains cards from the show for the dealer to use
 
+maxBet
 
 player{}
 //Player object that represents the player
@@ -43,17 +54,28 @@ dealerPlay()
 //dealer hits until his hand is 17 or more
 //call App.determineWinner
 
-determineWinner()
+decidingWinner()
 //both array values get compared and see which one is closer to 21 without passing 21
 
-hitPlayer()
+hit()
 //gives a player another card from App.allCards[]
 //updates the value of the hand
 
+stand()
+//stops player from receiving cards
+//updates the value of the hand
+
+nextCard()
+//remove the given card from the shuffledDeck
+//give a card to a player from shuffledDeck
+
+playerCards: [],
+//Contains cards from the show for the player to use
+
 setup()
 //sets dealer and player to new Player objects
-//does other stuff
-//does more stuff
+//shuffles the cards and gets the deck ready to deal
+//call App.deal
 
 shuffle()
 

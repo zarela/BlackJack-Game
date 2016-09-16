@@ -4,7 +4,7 @@
 
 //Player constructor to display dealer and player's status
 
-function Players (backroll, playerCards, finalPoints){
+function Players (bankroll, playerCards, finalPoints){
 	this.bankroll = bankroll;
 	this.playerCards = playerCards;
 	this.finalPoints = finalPoints;
@@ -38,80 +38,85 @@ function deck(){
 
 var App = {
 	playerCards: [],
+	dealerCards:[],
 	player: null,
 	dealer: null,
   minBet: 10,
   maxBet:90,
   initCredit: 100,
   initBet: 10,
-
+	shoe: null,
 	//returns all cards shuffled
-  shuffle: function(deck){
+  shuffle: function(deckToShuffle=deck()){
     var shuffledDeck = [];
     // loop over cards, remove a random card from deck, add it to shuffleddeck array
-      for( var b = 0; b < deck.length; b++ ) {
+      for( var b = 0; b < deckToShuffle.length; b++ ) {
         // get a random number from 0 to deck.length
-        var randomNumber =  Math.floor(Math.random() * (deck.length ) );
-        shuffledDeck.push((deck[randomNumber]));
+        var randomNumber =  Math.floor(Math.random() * (deckToShuffle.length ) );
+        shuffledDeck.push((deckToShuffle[randomNumber]));
       }
-			// console.log(shuffledDeck);
+			//console.log(shuffledDeck);
       return shuffledDeck;
 
   },
 	//Updates cards, bankroll and points for dealer and players
 	//**Be back**
 	setup: function (){
+		App.shoe = App.shuffle();
 		App.player = new Players();
 		App.dealer = new Players();
+
+   console.log(App.shoe);
+	 	App.deal();
 	},
 
 	deal:function(){
-		var shuffled = this.shuffle(deck());
-		counter +=1;
-		this.playerCards.push(shuffled[counter]);
-		console.log(this.playerCards[0]);
-		counter +=1;
-		this.playerCards.push(shuffled[counter]);
-		console.log(this.playerCards[1]);
-	},
-
-  nextCard:function(){
-		var shuffled = this.shuffle(deck());
-	 	counter +=1;
-		  // console.log(shuffled[counter]);
-		 //  counter +=1;
-		  // console.log(shuffled[counter]);
-		// for (var i = 0; i<shuffled.length; i++){
-		// 	counter +=i;
-		// }
-		this.playerCards.push(shuffled[counter]);
-		console.log(this.playerCards[0]);
-
-
-		// return new Object[]{array1, array2};
-
+		// var shuffled = this.shuffle(deck());
+		// counter +=1;
+		// this.playerCards.push(shuffled[counter]);
+		// console.log(this.playerCards[0]);
 		// counter +=1;
 		// this.playerCards.push(shuffled[counter]);
 		// console.log(this.playerCards[1]);
+		App.nextCard();
+		App.nextCard();
+
+	},
+
+  nextCard:function(){
+		var temp = 	App.shoe.pop();
+		App.playerCards.push(temp);
+		console.log(App.playerCards);
+
   },
 
-  gameHand: function(){
-    // player has the option  to add more cards o stop
-    // dealer has the option to play
+  hit: function(){
+  	App.nextCard();
+  },
+
+	stand: function(){
+		//stops player from receiving cards
+		//updates the value of the hand
   },
   displayingCards: function(){
     // once dealer has stoped playing, cards should go to array of points
     // player cards should go to its own
   },
+	calculateHandValue: function(){
+	//calculates points from playerCards array
+	},
+
   decidingWinner: function(){
     // winner with the accurate points will be declared a winner
   },
-  finishingGame: function(){
+
+  cleanUp: function(){
     // game will finish
     // if user has 0 coins
     // else if clicks restart
     // else if quits game
-  }
+  },
+
 
 
 };
@@ -119,11 +124,12 @@ var App = {
 
 var UI = {
 	onClickStart: function(){
-		console.log(App.deal());
+
+		App.setup();
 	},
 
 	onClickHit: function(){
-		console.log(App.nextCard());
+		App.nextCard();
 	},
 
 	onClickStand: function(){
