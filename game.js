@@ -2,56 +2,6 @@
 // Copyright (C) 2016 Zarela Graves under the GNU General Public License.
 
 
-//Player constructor to display dealer and player's status
-
-function Card(value, name, suit, points){
-	this.value = value;
-	this.name = name;
-	this.suit = suit;
-	this.points = points;
-}
-
-function Deck(){
-	this.cards = [];
-	this.reset();
-}
-
-Deck.prototype.reset = function(){
-
-	this.cards = [];
-	var names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-	var points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
-	var suits = ['Hearts','Diamonds','Spades','Clubs'];
-
-	for( var s = 0; s < suits.length; s++ ) {
-			for( var n = 0; n < names.length; n++ ) {
-					this.cards.push( new Card( n+1, names[n], suits[s], points[n] ) );
-			}
-	}
-}
-
-Deck.prototype.draw = function(number){
-	var drawnCards = [];
-
-	for (var i=0; i<number  ;i++){
-		drawnCards.push(this.cards.pop());
-	}
-	// console.log(drawnCards);
-	return drawnCards;
-}
-
-Deck.prototype.shuffle = function(){
-	var deck = this;
-    var shuffledCards = [];
-
-    for( var b = 0; b < deck.cards.length; b++ ) {
-        var randomNumber =  Math.floor(Math.random() * (deck.cards.length ) );
-        shuffledCards.push((deck.cards[randomNumber]));
-    }
-	this.cards = shuffledCards;
-}
-
-//
 //**might be back
 // function Player (bankroll, playerCards, finalPoints){
 // 	this.bankroll = bankroll;
@@ -71,9 +21,7 @@ Deck.prototype.shuffle = function(){
 // var counter = 0;
 // //Function to make all cards in a deck
 // function Deck(){
-//
 // 	this.cards = [];
-//
 // }
 //
 // Deck.prototype.reset = function(){
@@ -88,6 +36,51 @@ Deck.prototype.shuffle = function(){
 // 	}
 // }
 // //** end of be back
+
+function Card(value, name, suit, points){
+	// this.value = value;
+	this.name = name;
+	this.suit = suit;
+	this.points = points;
+}
+
+function Deck(){
+	this.cards = [];
+	this.reset();
+}
+
+Deck.prototype.reset = function(){
+	this.cards = [];
+	var names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+	var points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+	var suits = ['Hearts','Diamonds','Spades','Clubs'];
+
+	for( var s = 0; s < suits.length; s++ ) {
+			for( var n = 0; n < names.length; n++ ) {
+					this.cards.push( new Card( n+1, names[n], suits[s], points[n] ) );
+			}
+	}
+}
+
+Deck.prototype.draw = function(number){
+	var drawnCards = [];
+	for (var i=0; i<number  ;i++){
+		drawnCards.push(this.cards.pop());
+	}
+	// console.log(drawnCards);
+	return drawnCards;
+}
+
+Deck.prototype.shuffle = function(){
+	var deck = this;
+    var shuffledCards = [];
+
+    for( var b = 0; b < deck.cards.length; b++ ) {
+        var randomNumber =  Math.floor(Math.random() * (deck.cards.length ) );
+        shuffledCards.push((deck.cards[randomNumber]));
+    }
+	this.cards = shuffledCards;
+}
 
 var App = {
 	playerCards: [],
@@ -124,11 +117,11 @@ var App = {
 	playerHit: function(){
 		// if(App.playersCanPlay(App.playerCards)<21){
 		if(App.initCredit>0){
-			App.initCredit -=10; //App.initCredit = App.initCredit-bet
+			 App.initCredit -=10; //App.initCredit = App.initCredit-bet
         if(App.playersCanPlay(App.playerCards)<21){
-			  var tempPlayer = deck.draw(1);
-				for (var i=0; i<tempPlayer.length; i++){
-					App.playerCards.push(tempPlayer[i]);
+			    var tempPlayer = deck.draw(1);
+				  for (var i=0; i<tempPlayer.length; i++){
+					  App.playerCards.push(tempPlayer[i]);
 				}
 
 				console.log(App.playersCanPlay(App.playerCards));
@@ -142,27 +135,36 @@ var App = {
 		else{
 			console.log("Get more money");
 		}
-	// } else {
-	// 	console.log("You are busted!");
-	// }
 
 	},
 
 	playersCanPlay: function(hand){
 		var total = 0;
 		for ( var i = 0; i < hand.length; i++ ) {
-				total += hand[i]["value"];
-				// total += hand[i]["points"];
+				// total += hand[i]["value"];
+				total += hand[i]["points"];
 
 		}
 		// console.log(total);
 		return total;
-	}
+	},
 
+	bet: function(betNumber){
+		//Allows player to make a bet with whatever number as long is more than 10 and less than the amount he has in his bankroll.
+		//If he has no money left, then game is over and dealer should play
+	},
 
+	potMoney: function(){
+		//holds the money in the bet and send the money to the winner of the game.
+	},
 
+	stand: function(){
+		//player stop playing and is now the turn of the dealer to play
+	},
 
-
+	dealerhit: function(){
+		// he wil get another card as long is not over 17, if he passes 17, then he stops and points get compared to player points
+	},
 
 
 	//returns all cards shuffled
@@ -247,10 +249,7 @@ var App = {
   //   // else if quits game
   // },
 
-
-
 };
-
 
 var UI = {
 	onClickStart: function(){
@@ -262,6 +261,7 @@ var UI = {
 
 	onClickHit: function(){
 		App.playerHit();
+		console.log(App.playerCards);
 	},
 
 	onClickStand: function(){

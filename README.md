@@ -11,17 +11,21 @@ Capital letters = big objects
 
 ### Global Variables
 
-Players{
-  bankroll: money,
-  playerCards: []
-  finalPoints: number that adds points on cardsArray
-}
+Card ()
+//Makes a single card which contains name, suit and points as properties
 
-card ()
-//Makes cards where value is the card number and points represents card points for the game
+Deck()
+//Uses a constructor to make all cards in the deck grabbing an array of cards (deck) and resets so this function can only be created once preventing making multiple decks.
 
-deck()
-//Uses a constructor to make all cards in the deck
+Deck.prototype.draw()
+//Takes as a parameter of number, where number is the name of cards to be drawn from the deck. Also, these drawn cards will be removed from the deck.
+
+Deck.prototype.reset()
+//Makes unique Cards for a deck containing card name, suit and points. Taking in consideration that J, Q and K are worth 10 points.
+
+Deck.prototype.shuffle()
+//Takes the Deck of cards and shuffles them to be displayed randomly
+
 
 ###App Object
 
@@ -81,6 +85,10 @@ shuffle()
 
 standPlayer()
 //player doesn't get another card; it's dealer's turn now so we call App.dealerPlay
+
+
+
+
 
 ###UI
 Ui interacts with the DOM
