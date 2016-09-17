@@ -36,7 +36,7 @@ Deck.prototype.draw = function(number){
 	for (var i=0; i<number  ;i++){
 		drawnCards.push(this.cards.pop());
 	}
-	console.log(drawnCards);
+	// console.log(drawnCards);
 	return drawnCards;
 }
 
@@ -99,15 +99,70 @@ var App = {
   initCredit: 100,
   initBet: 10,
 
+	// gameSetup: function(){
+	//
+	// },
+
 	startGame: function(){
 		deck = new Deck();
 		console.log(deck);
 		deck.shuffle();
-		App.playerCards.push(deck.draw(2));
+		var tempPlayer = deck.draw(2);
+			for (var i=0; i<tempPlayer.length; i++){
+				App.playerCards.push(tempPlayer[i]);
+			}
+		// App.playerCards.push(deck.draw(2));
 		console.log(App.playerCards);
-		App.dealerCards.push(deck.draw(2));
+		var tempDealer = deck.draw(2);
+			for (var i=0; i<tempDealer.length; i++){
+				App.dealerCards.push(tempDealer[i]);
+			}
+		// App.dealerCards.push(deck.draw(2));
 		console.log(App.dealerCards);
+	},
+
+	playerHit: function(){
+		// if(App.playersCanPlay(App.playerCards)<21){
+		if(App.initCredit>0){
+			App.initCredit -=10; //App.initCredit = App.initCredit-bet
+        if(App.playersCanPlay(App.playerCards)<21){
+			  var tempPlayer = deck.draw(1);
+				for (var i=0; i<tempPlayer.length; i++){
+					App.playerCards.push(tempPlayer[i]);
+				}
+
+				console.log(App.playersCanPlay(App.playerCards));
+				console.log(App.initCredit);
+			}else {
+					console.log("You are busted!");
+				}
+
+		}
+
+		else{
+			console.log("Get more money");
+		}
+	// } else {
+	// 	console.log("You are busted!");
+	// }
+
+	},
+
+	playersCanPlay: function(hand){
+		var total = 0;
+		for ( var i = 0; i < hand.length; i++ ) {
+				total += hand[i]["value"];
+				// total += hand[i]["points"];
+
+		}
+		// console.log(total);
+		return total;
 	}
+
+
+
+
+
 
 
 	//returns all cards shuffled
@@ -206,9 +261,7 @@ var UI = {
 	},
 
 	onClickHit: function(){
-		// App.nextCard();
-		// App.hit();
-		// console.log(App.playerCards);
+		App.playerHit();
 	},
 
 	onClickStand: function(){
