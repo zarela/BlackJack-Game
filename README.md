@@ -31,14 +31,7 @@ Deck.prototype.shuffle()
 
 Holds game logic and game-related data
 
-calculateHandValue()
-//calculates points from playerCards array
 
-cleanUp: function()
-// game will finish
-// if user has 0 coins
-// else if clicks restart
-// else if quits game
 
 deal()
 //gives two cards to both player and dealer
