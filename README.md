@@ -1,5 +1,40 @@
 # Pseudo-code and Game Overview
 
+Player starts with 100 dollars (displays money credit), which is initCredit
+
+game starts after player makes a bet, which needs to be more than current
+bankroll. Bet needs to be at least 10. Player can only make one bet until hand is over.
+
+After submit bet, money goes into a potMoney array and game can start. All these should happen on start click, before player receives his cards.
+
+starting the game:
+game starts by giving two cards to both player and dealer.
+if players initial cards are A+10, A+J, A+Q or A+K, then will be dealer turn to play and he will receive automatically 21 points as a total for his cards.
+
+playerHit, calls dealer can playersCanPlay and can keep getting cards as long as he does not passes over 21.
+If one of cards is a A and points are less or equals to ten, replace the value of card for 11 points instead of 1.
+If after replacing the value of Ace for 11 points the player goes over 21, then value of Ace can be 1 again and continue playing until passes 21 (when he looses) or decides to stop.
+
+DealerHit: Shows his next card and plays only after player decided to STAND.
+Same conditions description above, except dealer cannot get more cards if he passes 17 and then his game stops. Also, if dealers initial cards are:
+A+10, A+J, A+Q or A+K, then his points will be 21 and we can move to deciding the winner.
+
+decidingWinner: after both player and dealer stop playing, points on both cards array needs to be compared and the one closer to 21 will win.
+if both dealer and player are tie, then player only receives back the money he initially added on his bet.
+
+Paying the winner:
+if player looses, money in bet gets deducted from his account
+if player wins he receives double the amount he bet (his bet plus the same amount paid by dealer)
+
+new hand: if player still has money after loosing a hand, he can play again and everything gets called completely again.
+He can play as many times until he has no money.
+New hand, needs to clear the array of cards for both player and dealer with a fresh shuffled deck.
+
+
+
+
+
+
 ## Syntax:
 Capital letters = big objects
 
@@ -28,10 +63,6 @@ Deck.prototype.shuffle()
 
 
 ###App Object
-
-Holds game logic and game-related data
-
-
 
 deal()
 //gives two cards to both player and dealer
@@ -80,11 +111,8 @@ standPlayer()
 //player doesn't get another card; it's dealer's turn now so we call App.dealerPlay
 
 
-
-
-
 ###UI
-Ui interacts with the DOM
+UI interacts with the DOM
 
 ###EventHandlers
 Handle events when buttons are being clicked.

@@ -103,11 +103,11 @@ var App = {
 				  for (var i=0; i<tempPlayer.length; i++){
 					  App.playerCards.push(tempPlayer[i]);
 						console.log(App.playersCanPlay(App.playerCards));
+					}
 				}
-			}
 				// console.log(App.playersCanPlay(App.playerCards));
 				// console.log(App.initCredit);
-			else {
+				else {
 			  	// console.log(App.playersCanPlay(App.playerCards));
 					console.log("You are REALLY busted!");
 				}
@@ -123,10 +123,11 @@ var App = {
 		return total;
 	},
 
-	// bet: function(betNumber){
-	// 	//Allows player to make a bet with whatever number as long is more than 10 and less than the amount he has in his bankroll.
-	// 	//If he has no money left, then game is over and dealer should play
-	// },
+	Otherbet: function(){
+		//Allows player to make a bet with whatever number as long is more than 10 and less than the amount he has in his bankroll.
+		//If he has no money left, then game is over and dealer should play
+
+	},
 
 	potMoney: function(){
 		//holds the money in the bet and send the money to the winner of the game.
@@ -143,11 +144,13 @@ var App = {
 
 //User Interface
 var UI = {
-	onClickStart: function(event){
+
+	onClickStart: function(){
 		// console.log("These are the player cards");
 		// console.log(App.playerCards);
 		App.startGame();
-
+		$("#start").attr("disabled", true);
+		return true;
 	},
 
 	onClickHit: function(){
@@ -155,10 +158,9 @@ var UI = {
 			var cardTotal = App.playerHit();
 			// console.log(cardTotal);
 			if (cardTotal>21){
+				console.log(App.playerCards);
 				alert("You are busted!!!");
 			}
-			console.log(App.playerCards);
-
 		}
 		// console.log(App.playersCanPlay(App.playerCards));
 	},
@@ -168,16 +170,19 @@ var UI = {
 	},
 
 	onClickNewHand: function(){
+
+		// $('form').trigger("reset");
+		// App.startGame();
 		console.log("Hello from New Hand button");
 	},
 
 	onClickBet: function(){
-		console.log("Hello from Bet button");
-		// $( "bet" ).val();
+		var betValue = $( "#bet").val();
+		console.log(betValue);
 	},
 
 	onClickQuit: function(){
-		console.log("Hello from Quit button");
+		console.log("Game Summary");
 	},
 
 	onClickReset: function(){
@@ -185,7 +190,6 @@ var UI = {
 		location.reload();
 	},
 }
-
 
 //My event listeners for game buttons
 window.onload = function(){
