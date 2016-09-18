@@ -56,10 +56,7 @@ var App = {
   initCredit: 100,
 	playerStand: false,
 	dealerStand: false,
-	// bet: 10,
-	// gameSetup: function(){
-	//
-	// },
+
 	bet: function(){
 
 		var betAmount = UI.onClickBet();
@@ -95,8 +92,7 @@ var App = {
 		// App.playerCards.push(deck.draw(2));
 		console.log("player cards ");
 		console.log(App.playerCards);
-		var showPlayerCards = $("dealer-cards").append()
-		showPlayerCards.html = App.playerCards.name;
+
 
 		var tempDealer = deck.draw(2);
 			for (var i=0; i<tempDealer.length; i++){
@@ -127,15 +123,12 @@ var App = {
 						console.log("You are REALLY busted!");
 					}
 					return (App.playersCanPlay(App.playerCards));
-
 				}
-
 	},
 
 	playersCanPlay: function(hand){
 		var total = 0;
 		for ( var i = 0; i < hand.length; i++ ) {
-				// total += hand[i]["value"];
 				total += hand[i]["points"];
 		}
 		return total;
@@ -174,33 +167,43 @@ var App = {
 				App.initCredit+=pot;
 				console.log(App.initCredit)
 				console.log("this is winner money");
-
 			}
 			else{
 			console.log("dealer wins");
 			}
 
 	  }
-  else if (App.playersCanPlay(App.playerCards)>21){
-		console.log("Dealer wins player busted!");
-	} else {
-		console.log("Player wins dealer busted!");
-		App.initCredit+=pot;
-		console.log(App.initCredit)
-		console.log("this is winner money");
-
+  	else if (App.playersCanPlay(App.playerCards)>21){
+			console.log("Dealer wins player busted!");
+		}
+		else{
+			console.log("Player wins dealer busted!");
+			App.initCredit+=pot;
+			console.log(App.initCredit)
+			console.log("this is winner money");
+		}
 	}
-}
-
-}; //
+}; //End of App Game
 
 //User Interface
 var UI = {
+	printDealerCard: function(){
+		// App.dealerCards.push();
+		// App.dealerCards();
+		var showPlayerCards = $("<div></div>").appendTo("#dealer-cards");
+		showPlayerCards.addClass("newCards");
+		$(".newCards").html(`${App.dealerCards[0].name + " " + App.dealerCards[0].suit }`);
+
+
+	},
 
 	onClickStart: function(){
 		// console.log("These are the player cards");
 		// console.log(App.playerCards);
+
+		// alert("Please enter your BET"); **Might be back**
 		App.startGame();
+		UI.printDealerCard();
 		$("#start").attr("disabled", true);
 		return true;
 	},
@@ -232,7 +235,6 @@ var UI = {
 		App.dealerStand = false;
 		App.startGame();
 
-
 		console.log("Hello from New Hand button");
 	},
 
@@ -251,7 +253,7 @@ var UI = {
 	},
 }
 
-//My event listeners for game buttons
+//Event listeners for game buttons
 window.onload = function(){
   //Event handler for starting the game
   $('#start').on('click', UI.onClickStart);
