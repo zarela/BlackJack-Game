@@ -187,14 +187,23 @@ var App = {
 
 //User Interface
 var UI = {
-	printDealerCard: function(){
+	printDealerCards: function(){
 		// App.dealerCards.push();
-		// App.dealerCards();
-		var showPlayerCards = $("<div></div>").appendTo("#dealer-cards");
-		showPlayerCards.addClass("newCards");
-		$(".newCards").html(`${App.dealerCards[0].name + " " + App.dealerCards[0].suit }`);
+		var showDealerCards = $("<div><p></p></div>").appendTo("#dealer-cards");
+		showDealerCards.addClass("newCardsD");
+		$(".newCardsD").html(`${App.dealerCards[0].name + " " + App.dealerCards[0].suit }`);
 
+		// if(App.dealerCards[0].name =="hearts"){
+		// 	$(".newCardsD").html("<p>&#9829<p>");
+		// }
 
+	},
+
+	printPlayerCards: function(){
+		var showPlayerCards = $("<div><p></p></div>").appendTo("#player-cards");
+		showPlayerCards.addClass("newCardsP");
+		$(".newCardsP").html(`${App.playerCards[0].name + " " + App.playerCards[0].suit }`);
+		$(".newCardsP").html(`${App.playerCards[1].name + " " + App.playerCards[1].suit }`);
 	},
 
 	onClickStart: function(){
@@ -203,9 +212,11 @@ var UI = {
 
 		// alert("Please enter your BET"); **Might be back**
 		App.startGame();
-		UI.printDealerCard();
+		UI.printDealerCards();
+		UI.printPlayerCards();
 		$("#start").attr("disabled", true);
 		return true;
+
 	},
 
 	onClickHit: function(){
