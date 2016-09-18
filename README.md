@@ -1,9 +1,11 @@
 # Pseudo-code and Game Overview
 
-Player starts with 100 dollars (displays money credit), which is initCredit
+##  Game Story
 
+GameSetUp:
+Player starts with 100 dollars (displays money credit), which is initCredit.
 game starts after player makes a bet, which needs to be more than current
-bankroll. Bet needs to be at least 10. Player can only make one bet until hand is over.
+bankroll. Player can only make one bet until hand is over.
 
 After submit bet, money goes into a potMoney array and game can start. All these should happen on start click, before player receives his cards.
 
@@ -29,9 +31,6 @@ if player wins he receives double the amount he bet (his bet plus the same amoun
 new hand: if player still has money after loosing a hand, he can play again and everything gets called completely again.
 He can play as many times until he has no money.
 New hand, needs to clear the array of cards for both player and dealer with a fresh shuffled deck.
-
-
-
 
 
 

@@ -45,24 +45,36 @@ Deck.prototype.shuffle = function(){
     }
 	this.cards = shuffledCards;
 }
+var pot = 0;
 
 var App = {
 	playerCards: [],
 	dealerCards:[],
 	player: null,
 	dealer: null,
-  // minBet: 10, Might use it later
-  // maxBet:90, Might use it later
+	// pot: 0,
   initCredit: 100,
-	bet: 10,
+	playerStand: false,
+	dealerStand: false,
+	// bet: 10,
 	// gameSetup: function(){
 	//
 	// },
+	bet: function(){
+
+		var betAmount = UI.onClickBet();
+		console.log(betAmount);
+		App.initCredit-=betAmount;
+		pot = betAmount+ pot;
+		console.log(pot);
+		// console.log(App.initCredit);
+	},
 
 	bankroll: function(){
 		if(App.initCredit>0){
 			//App.initCredit = App.initCredit-bet
-			 App.initCredit -=10;
+			//  App.initCredit -=10;
+			App.bet();
 			console.log(App.initCredit);
 			 }
 		else{
@@ -81,6 +93,7 @@ var App = {
 				App.playerCards.push(tempPlayer[i]);
 			}
 		// App.playerCards.push(deck.draw(2));
+		console.log("player cards ");
 		console.log(App.playerCards);
 		var showPlayerCards = $("dealer-cards").append()
 		showPlayerCards.html = App.playerCards.name;
@@ -90,6 +103,7 @@ var App = {
 				App.dealerCards.push(tempDealer[i]);
 			}
 		// App.dealerCards.push(deck.draw(2));
+		console.log("dealer cards ");
 		console.log(App.dealerCards);
 	},
 
@@ -98,20 +112,24 @@ var App = {
 		 //App.initCredit = App.initCredit-bet
 
 				// 	App.startGame();
-        if(App.playersCanPlay(App.playerCards)<21){
-			    var tempPlayer = deck.draw(1);
-				  for (var i=0; i<tempPlayer.length; i++){
-					  App.playerCards.push(tempPlayer[i]);
-						console.log(App.playersCanPlay(App.playerCards));
+				if(App.playerStand === false){
+					if(App.playersCanPlay(App.playerCards)<21){
+						var tempPlayer = deck.draw(1);
+						for (var i=0; i<tempPlayer.length; i++){
+							App.playerCards.push(tempPlayer[i]);
+							console.log(App.playersCanPlay(App.playerCards));
+						}
 					}
+					// console.log(App.playersCanPlay(App.playerCards));
+					// console.log(App.initCredit);
+					else {
+						// console.log(App.playersCanPlay(App.playerCards));
+						console.log("You are REALLY busted!");
+					}
+					return (App.playersCanPlay(App.playerCards));
+
 				}
-				// console.log(App.playersCanPlay(App.playerCards));
-				// console.log(App.initCredit);
-				else {
-			  	// console.log(App.playersCanPlay(App.playerCards));
-					console.log("You are REALLY busted!");
-				}
-				return (App.playersCanPlay(App.playerCards));
+
 	},
 
 	playersCanPlay: function(hand){
@@ -123,24 +141,58 @@ var App = {
 		return total;
 	},
 
-	Otherbet: function(){
-		//Allows player to make a bet with whatever number as long is more than 10 and less than the amount he has in his bankroll.
-		//If he has no money left, then game is over and dealer should play
 
-	},
+	dealerHit: function(){
+			while(App.dealerStand === false){
+				console.log(App.dealerStand);
+			  if(App.playersCanPlay(App.dealerCards)<17){
+					var tempDealer = deck.draw(1);
 
-	potMoney: function(){
-		//holds the money in the bet and send the money to the winner of the game.
-	},
+					for (var i=0; i<tempDealer.length; i++){
+						App.dealerCards.push(tempDealer[i]);
+						console.log("Dealer has this points");
+						console.log(App.playersCanPlay(App.dealerCards));
+					}
+				}
 
-	stand: function(){
-		//player stop playing and is now the turn of the dealer to play
+			else {
+				App.dealerStand === true;
+				console.log("dealer stands");
+				console.log("Dealer has this points");
+				console.log(App.playersCanPlay(App.dealerCards));
+				if(App.playersCanPlay(App.dealerCards)>21){
+					console.log("Dealer is busted");
+				}
+			}
+			return (App.playersCanPlay(App.dealerCards));
+  	}
 	},
+	decidingWinner: function(){
+		if(App.playersCanPlay(App.playerCards)<=21 && App.playersCanPlay(App.dealerCards)<=21){
+			if(App.playersCanPlay(App.playerCards)>App.playersCanPlay(App.dealerCards)){
+				console.log("player wins");
+				App.initCredit+=pot;
+				console.log(App.initCredit)
+				console.log("this is winner money");
 
-	dealerhit: function(){
-		// he wil get another card as long is not over 17, if he passes 17, then he stops and points get compared to player points
-	},
-};
+			}
+			else{
+			console.log("dealer wins");
+			}
+
+	  }
+  else if (App.playersCanPlay(App.playerCards)>21){
+		console.log("Dealer wins player busted!");
+	} else {
+		console.log("Player wins dealer busted!");
+		App.initCredit+=pot;
+		console.log(App.initCredit)
+		console.log("this is winner money");
+
+	}
+}
+
+}; //
 
 //User Interface
 var UI = {
@@ -166,19 +218,27 @@ var UI = {
 	},
 
 	onClickStand: function(){
+		App.playerStand = true;
 		console.log("Hello from Stand button");
+		App.dealerHit();
+		App.decidingWinner();
+		//need to clear the board and make sure all the other buttons are activated
 	},
 
 	onClickNewHand: function(){
+		App.playerCards = [];
+		App.dealerCards = [];
+		App.playerStand = false;
+		App.dealerStand = false;
+		App.startGame();
 
-		// $('form').trigger("reset");
-		// App.startGame();
+
 		console.log("Hello from New Hand button");
 	},
 
 	onClickBet: function(){
 		var betValue = $( "#bet").val();
-		console.log(betValue);
+		return betValue;
 	},
 
 	onClickQuit: function(){
@@ -195,7 +255,7 @@ var UI = {
 window.onload = function(){
   //Event handler for starting the game
   $('#start').on('click', UI.onClickStart);
-  //Event handler for reseting the game or ask for a new game
+  //Event handler for reseting the game
   $('#reset').on('click', UI.onClickReset);
   //Event handler for quitting the game
   $('#quit').on('click', UI.onClickQuit);
