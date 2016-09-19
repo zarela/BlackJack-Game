@@ -58,11 +58,12 @@ var App = {
 
 	bet: function(){
 
-		var betAmount = UI.onClickBet();
+		var betAmount = UI.amountBet();
 		console.log(betAmount);
 		App.initCredit-=betAmount;
-		pot = betAmount+ pot;
-		console.log(pot);
+		App.pot = betAmount;
+		$("#credit").html(`You have: ${App.initCredit}`);
+		console.log(App.pot);
 		// console.log(App.initCredit);
 	},
 
@@ -172,7 +173,7 @@ var App = {
 			if(App.playersCanPlay(App.playerCards)>App.playersCanPlay(App.dealerCards)){
 				console.log("player wins");
 				alert("player wins");
-				App.initCredit+=pot;
+				App.initCredit+=Number(App.pot)*2;
 				console.log(App.initCredit)
 				console.log("this is winner money");
 			}
@@ -189,7 +190,7 @@ var App = {
 		else{
 			alert("Player wins dealer busted!");
 			console.log("Player wins dealer busted!");
-			App.initCredit+=pot;
+			App.initCredit+=Number(App.pot)*2;
 			console.log(App.initCredit)
 			console.log("this is winner money");
 		}
@@ -246,6 +247,7 @@ var UI = {
 		// console.log(App.playerCards);
 
 		// alert("Please enter your BET"); **Might be back**
+		// prompt("Please enter your BET");
 		App.startGame();
 		UI.printDealerCards();
 		UI.printPlayerCards();
@@ -277,6 +279,8 @@ var UI = {
 	},
 
 	onClickNewHand: function(){
+		$("#credit").html(`You have: ${App.initCredit}`);
+		$("#bet-section").html("Amount Bet: ");
 		UI.clearScreen("#dealer-cards");
 		UI.clearScreen("#player-cards");
 		App.playerCards = [];
@@ -292,9 +296,18 @@ var UI = {
 		console.log("Hello from New Hand button");
 	},
 
-	onClickBet: function(){
-		var betValue = $( "#bet").val();
-		return betValue;
+	amountBet: function(){
+
+		// var betValue = $( "#bet").val();
+		// return betValue;
+
+		var dollars = prompt("Please enter your BET");
+    if (dollars != null) {
+        // document.getElementById("bet-section").innerHTML =
+        // "Amount Bet: " + dollars;
+				$("#bet-section").html(`Amount Bet: ${dollars}`);
+    }
+		return dollars;
 	},
 
 	onClickQuit: function(){
@@ -325,6 +338,6 @@ window.onload = function(){
 	//Event handler for re-starting the game
   $('#new-hand').on('click', UI.onClickNewHand);
 	//Event handler for making bets
-  $('#bet-button').on('click', UI.onClickBet);
+  // $('#bet-button').on('click', UI.onClickBet);
 
 }

@@ -50,7 +50,7 @@ body{
   justify-content: flex-end;
   padding: 1em;
 }
-.bet-section{
+#bet-section{
   align-content: right;
 }
 #dealer-cards, #player-cards{
