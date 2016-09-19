@@ -45,14 +45,13 @@ Deck.prototype.shuffle = function(){
     }
 	this.cards = shuffledCards;
 }
-var pot = 0;
 
 var App = {
 	playerCards: [],
 	dealerCards:[],
 	player: null,
 	dealer: null,
-	// pot: 0,
+	pot: 0,
   initCredit: 100,
 	playerStand: false,
 	dealerStand: false,
@@ -113,15 +112,22 @@ var App = {
 						var tempPlayer = deck.draw(1);
 						for (var i=0; i<tempPlayer.length; i++){
 							App.playerCards.push(tempPlayer[i]);
+							UI.printPlayerCards();
+							if(App.playersCanPlay(App.playerCards)>20){
+								console.log("You are REALLY busted!");
+								alert("You are busted!!!");
+							} //prints cards array
 							console.log(App.playersCanPlay(App.playerCards));
 						}
 					}
 					// console.log(App.playersCanPlay(App.playerCards));
 					// console.log(App.initCredit);
-					else {
-						// console.log(App.playersCanPlay(App.playerCards));
-						console.log("You are REALLY busted!");
-					}
+					// else {
+					// 	// console.log(App.playersCanPlay(App.playerCards));
+					// 	console.log("You are REALLY busted!");
+					// 	alert("You are busted!!!");
+					//
+					// }
 					return (App.playersCanPlay(App.playerCards));
 				}
 	},
@@ -143,6 +149,7 @@ var App = {
 
 					for (var i=0; i<tempDealer.length; i++){
 						App.dealerCards.push(tempDealer[i]);
+						UI.printDealerCards();
 						console.log("Dealer has this points");
 						console.log(App.playersCanPlay(App.dealerCards));
 					}
@@ -164,19 +171,23 @@ var App = {
 		if(App.playersCanPlay(App.playerCards)<=21 && App.playersCanPlay(App.dealerCards)<=21){
 			if(App.playersCanPlay(App.playerCards)>App.playersCanPlay(App.dealerCards)){
 				console.log("player wins");
+				alert("player wins");
 				App.initCredit+=pot;
 				console.log(App.initCredit)
 				console.log("this is winner money");
 			}
 			else{
+			alert("dealer wins");
 			console.log("dealer wins");
 			}
 
 	  }
   	else if (App.playersCanPlay(App.playerCards)>21){
+			alert("Dealer wins player busted!");
 			console.log("Dealer wins player busted!");
 		}
 		else{
+			alert("Player wins dealer busted!");
 			console.log("Player wins dealer busted!");
 			App.initCredit+=pot;
 			console.log(App.initCredit)
@@ -189,22 +200,46 @@ var App = {
 var UI = {
 	printDealerCards: function(){
 		// App.dealerCards.push();
-		var showDealerCards = $("<div><p></p></div>").appendTo("#dealer-cards");
-		showDealerCards.addClass("newCardsD");
-		$(".newCardsD").html(`${App.dealerCards[0].name + " " + App.dealerCards[0].suit }`);
-
+		UI.clearScreen("#dealer-cards");
+		for(var i=0; i<App.dealerCards.length; i++){
+			console.log(App.dealerCards[i]);
+			var showDealerCards = $("<div></div>").appendTo("#dealer-cards");
+			// var showDealerCards = $("#dealer-cards").get(0);
+			showDealerCards.addClass("newCardsD"+ i);
+			showDealerCards.addClass("newCardsD");
+			$(".newCardsD"+ i).html(`${App.dealerCards[i].name + " " + App.dealerCards[i].suit }`);
+		}
 		// if(App.dealerCards[0].name =="hearts"){
 		// 	$(".newCardsD").html("<p>&#9829<p>");
 		// }
-
 	},
+	clearScreen: function(board){
 
+		$(board).empty();
+	},
 	printPlayerCards: function(){
-		var showPlayerCards = $("<div><p></p></div>").appendTo("#player-cards");
-		showPlayerCards.addClass("newCardsP");
-		$(".newCardsP").html(`${App.playerCards[0].name + " " + App.playerCards[0].suit }`);
-		$(".newCardsP").html(`${App.playerCards[1].name + " " + App.playerCards[1].suit }`);
+		UI.clearScreen("#player-cards");
+		for(var i=0; i<App.playerCards.length; i++){
+			console.log(App.playerCards[i]);
+			var showPlayerCards = $("<div></div>").appendTo("#player-cards");
+			showPlayerCards.addClass("newCardsP"+i);
+			showPlayerCards.addClass("newCardsP");
+			$(".newCardsP"+i).html(`${App.playerCards[i].name + " " + App.playerCards[i].suit }`);
+	}
+
+		// var showPlayerCards = $("<div><p></p></div>").appendTo("#player-cards");
+		// showPlayerCards.addClass("newCardsP");
+		// App.playerCards[0];
+		// var incrementCards = function(i){
+		// 	App.playerCards[i]++;
+		// 	showPlayerCards.data('index', App.playerCards.length - 1);
+		// 	var i =Number(showPlayerCards.data('index'));
+		// 	incrementCards(i);
+		// 	incrementCards.find('span').html(App.playerCards[i]);
+		// };
+
 	},
+
 
 	onClickStart: function(){
 		// console.log("These are the player cards");
@@ -214,6 +249,7 @@ var UI = {
 		App.startGame();
 		UI.printDealerCards();
 		UI.printPlayerCards();
+		$( ".newCardsD1" ).hide();
 		$("#start").attr("disabled", true);
 		return true;
 
@@ -225,7 +261,7 @@ var UI = {
 			// console.log(cardTotal);
 			if (cardTotal>21){
 				console.log(App.playerCards);
-				alert("You are busted!!!");
+				// alert("You are busted!!!");
 			}
 		}
 		// console.log(App.playersCanPlay(App.playerCards));
@@ -234,17 +270,24 @@ var UI = {
 	onClickStand: function(){
 		App.playerStand = true;
 		console.log("Hello from Stand button");
+		$( ".newCardsD1" ).show();
 		App.dealerHit();
 		App.decidingWinner();
 		//need to clear the board and make sure all the other buttons are activated
 	},
 
 	onClickNewHand: function(){
+		UI.clearScreen("#dealer-cards");
+		UI.clearScreen("#player-cards");
 		App.playerCards = [];
 		App.dealerCards = [];
 		App.playerStand = false;
 		App.dealerStand = false;
+		$("#start").attr("disabled", false);
+		return false;
+
 		App.startGame();
+
 
 		console.log("Hello from New Hand button");
 	},
@@ -255,7 +298,10 @@ var UI = {
 	},
 
 	onClickQuit: function(){
+
+
 		console.log("Game Summary");
+
 	},
 
 	onClickReset: function(){

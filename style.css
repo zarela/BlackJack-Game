@@ -4,10 +4,19 @@ body{
   /*height: 100vh;*/
   color: white;
   font-family: 'Titillium Web', sans-serif;
+
 }
-p{
+.logo{
+  font-family: 'Kaushan Script', cursive;
+  color: white;font-size: 50px;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: -0.9em;
+}
+/*p{
   padding: 50px;
-}
+}*/
 .board{
   padding: 2em;
 }
@@ -15,7 +24,7 @@ p{
   margin-left:100px;
 }
 .money-section{
-  padding: 4em;
+  padding: 1em;
   display:inline-block;
 }
 .game-buttons, .start-section{
@@ -23,6 +32,9 @@ p{
   justify-content: space-around;
   align-items: center;
   padding: 2em;
+}
+#hit, #stand, #new-hand{
+  box-shadow: 5px 5px 5px rgba(0, 0, 5, .6);
 }
 #start{
   color: white;
@@ -62,7 +74,7 @@ p{
   width: 130px;
   height: 200px;
   border-radius: 10px;
-  background: #fff;
+  background: #ebe9dc;
   -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.6);
   box-shadow: 3px 3px 7px rgba(0,0,0,0.6);
 }
