@@ -9,7 +9,7 @@
 * No split hands
 * No insurance
 * As right now the A is worth only one point instead of 11
-* Was not able to use pictures to display cards as pictures
+* Was not able to use pictures to display cards as pictures or at least to show the symbols in the cards.
 
 ## Game Overview
 
