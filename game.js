@@ -49,8 +49,6 @@ Deck.prototype.shuffle = function(){
 var App = {
 	playerCards: [],
 	dealerCards:[],
-	player: null,
-	dealer: null,
 	pot: 0,
   initCredit: 100,
 	playerStand: false,
@@ -92,7 +90,6 @@ var App = {
 		// App.playerCards.push(deck.draw(2));
 		console.log("player cards ");
 		console.log(App.playerCards);
-
 
 		var tempDealer = deck.draw(2);
 			for (var i=0; i<tempDealer.length; i++){
@@ -140,7 +137,6 @@ var App = {
 		}
 		return total;
 	},
-
 
 	dealerHit: function(){
 			while(App.dealerStand === false){
@@ -214,8 +210,8 @@ var UI = {
 		// 	$(".newCardsD").html("<p>&#9829<p>");
 		// }
 	},
-	clearScreen: function(board){
 
+	clearScreen: function(board){
 		$(board).empty();
 	},
 	printPlayerCards: function(){
@@ -226,28 +222,12 @@ var UI = {
 			showPlayerCards.addClass("newCardsP"+i);
 			showPlayerCards.addClass("newCardsP");
 			$(".newCardsP"+i).html(`${App.playerCards[i].name + " " + App.playerCards[i].suit }`);
-	}
-
-		// var showPlayerCards = $("<div><p></p></div>").appendTo("#player-cards");
-		// showPlayerCards.addClass("newCardsP");
-		// App.playerCards[0];
-		// var incrementCards = function(i){
-		// 	App.playerCards[i]++;
-		// 	showPlayerCards.data('index', App.playerCards.length - 1);
-		// 	var i =Number(showPlayerCards.data('index'));
-		// 	incrementCards(i);
-		// 	incrementCards.find('span').html(App.playerCards[i]);
-		// };
-
+		}
 	},
-
 
 	onClickStart: function(){
 		// console.log("These are the player cards");
 		// console.log(App.playerCards);
-
-		// alert("Please enter your BET"); **Might be back**
-		// prompt("Please enter your BET");
 		App.startGame();
 		UI.printDealerCards();
 		UI.printPlayerCards();
@@ -311,10 +291,7 @@ var UI = {
 	},
 
 	onClickQuit: function(){
-
-
-		console.log("Game Summary");
-
+		alert("Thank you for playing");
 	},
 
 	onClickReset: function(){
@@ -339,5 +316,4 @@ window.onload = function(){
   $('#new-hand').on('click', UI.onClickNewHand);
 	//Event handler for making bets
   // $('#bet-button').on('click', UI.onClickBet);
-
 }

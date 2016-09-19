@@ -2,23 +2,20 @@ body{
   background: url("https://mxg.cdnbf.net/mexchangeblackjack/turbo/assets/gameView/tableBackground.png?v1.26-235");
   background-size: cover;
   /*height: 100vh;*/
+  /*width: 100vw;*/
   color: white;
-  font-family: 'Titillium Web', sans-serif;
-
+  font-family: 'Mitr', sans-serif;
 }
 .logo{
-  font-family: 'Kaushan Script', cursive;
-  color: white;font-size: 50px;
+  font-family: 'Ewert', cursive;
+  color: #f7f0c4;
+  font-size: 40px;
   display:flex;
   justify-content: space-around;
   align-items: center;
-  padding: -0.9em;
 }
-/*p{
-  padding: 50px;
-}*/
 .board{
-  padding: 2em;
+  padding: 1em;
 }
 .credit{
   margin-left:100px;
@@ -61,20 +58,25 @@ body{
   margin-left: 40px;
 }
 .newCardsD, .newCardsP{
-  padding: 0.4em;
+  padding: 0.5em;
   display:flex;
-  align-content: flex-end;
+  flex-direction: column;
   justify-content: space-around;
+  /*align-content: flex-end;
+  justify-content: space-around;*/
   text-align: center;
-  font: 30px/50px Georgia, Times New Roman, serif;
+  font: 20px/20px Georgia, Times New Roman, serif;
   float: left;
-  color: black;
+  color: #5e3811;
   background: #00a651;
   margin-right: 10px;
-  width: 130px;
-  height: 200px;
+  width: 120px;
+  height: 190px;
   border-radius: 10px;
-  background: #ebe9dc;
-  -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.6);
-  box-shadow: 3px 3px 7px rgba(0,0,0,0.6);
+  border: 3px solid black;
+  background: #f7f0c4;
+  -webkit-box-shadow: 3px 3px 37px rgba(0,0,0,0.6);
+  box-shadow: 3px 3px 37px rgba(0,0,0,0.6);
+  outline: 3px solid #5e3811;
+  outline-offset: -18px;
 }
