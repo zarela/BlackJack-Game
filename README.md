@@ -1,6 +1,6 @@
 # Black Jack Game
 
-[Game Link]
+[Game Link] (https://zarela.github.io/BlackJack-Game/)
 
 [Game Wireframe](https://drive.google.com/open?id=0B9p6hJKmZMZENzZZeDFzemNRaGc)
 
