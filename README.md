@@ -78,8 +78,8 @@ When dealer and player are tie, both leave with the same amount of money they st
  * When START button is clicked, start button will hide and the other 3 buttons will show
  * When button is clicked Javascript generates a deck of cards randomly
  * If user clicks start:
-  * 100 dollars will be added to players bankroll
-  * 10 dollars will be automatically deducted from user bankroll
+   * 100 dollars will be added to players bankroll
+   * 10 dollars will be automatically deducted from user bankroll
 * Playing the game:
  * Player receives 2 cards face up
  * Dealer receives 2 cards (one face up and other face down)
@@ -219,5 +219,5 @@ $('#new-hand').on('click', UI.onClickNewHand);
 Background taken from this site
 https://mxg.cdnbf.net/mexchangeblackjack/turbo/assets/gameView/tableBackground.png
 
-Used to create my own version of a deck of cards 
+Used to create my own version of a deck of cards
 https://devdojo.com/blog/tutorials/create-a-deck-of-cards-in-javascript
