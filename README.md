@@ -78,23 +78,23 @@ When dealer and player are tie, both leave with the same amount of money they st
  * When START button is clicked, start button will hide and the other 3 buttons will show
  * When button is clicked Javascript generates a deck of cards randomly
  * If user clicks start:
-   * 100 dollars will be added to players bankroll
-   * 10 dollars will be automatically deducted from user bankroll
+    * 100 dollars will be added to players bankroll
+    * 10 dollars will be automatically deducted from user bankroll
 * Playing the game:
  * Player receives 2 cards face up
  * Dealer receives 2 cards (one face up and other face down)
  * If player gets black jack, dealer pays the player and game is over
  * If player gets any pair, it has the option to split the hand by paying 10 dollars
  * Else if player receives any other 2 cards can continue playing
-  * If player clicks HIT button, another card will show
-  * Player has option to click HIT or STAND
-   * If player clicks HIT, another card will be shown
-   * If player goes over 21 points, game is over and looses money on bet
-   * Else if player clicks the STAND button, the other dealer card needs to be shown
-    * If dealers cards sum less than 17 points, needs to receive another card until 17 points or more are reached
-     * If dealers cards are closer to 21 than player’s, dealer wins and players looses
-     * If player cards are closer to 21, then player wins and dealer looses
-     * Money in bet goes to winner
+   * If player clicks HIT button, another card will show
+   * Player has option to click HIT or STAND
+     * If player clicks HIT, another card will be shown
+     * If player goes over 21 points, game is over and looses money on bet
+     * Else if player clicks the STAND button, the other dealer card needs to be shown
+       * If dealers cards sum less than 17 points, needs to receive another card until 17 points or more are reached
+         * If dealers cards are closer to 21 than player’s, dealer wins and players looses
+         * If player cards are closer to 21, then player wins and dealer looses
+         * Money in bet goes to winner
 * Finishing/Reseting the game
  * When RESET button is clicked, start button will show again to start process again
  * When QUIT button is clicked, all buttons will disappear except for NEW/RESET button in case user wants to play again.
