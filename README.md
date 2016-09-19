@@ -92,9 +92,9 @@ When dealer and player are tie, both leave with the same amount of money they st
      * If player goes over 21 points, game is over and looses money on bet
      * Else if player clicks the STAND button, the other dealer card needs to be shown
        * If dealers cards sum less than 17 points, needs to receive another card until 17 points or more are reached
-         * If dealers cards are closer to 21 than player’s, dealer wins and players looses
-         * If player cards are closer to 21, then player wins and dealer looses
-         * Money in bet goes to winner
+          * If dealers cards are closer to 21 than player’s, dealer wins and players looses
+          * If player cards are closer to 21, then player wins and dealer looses
+          * Money in bet goes to winner
 * Finishing/Reseting the game
  * When RESET button is clicked, start button will show again to start process again
  * When QUIT button is clicked, all buttons will disappear except for NEW/RESET button in case user wants to play again.
