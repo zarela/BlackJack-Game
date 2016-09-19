@@ -112,20 +112,19 @@ Capital letters = big objects
 ### Global Variables
 
 Card ()
-//Makes a single card which contains name, suit and points as properties
+* Makes a single card which contains name, suit and points as properties
 
 Deck()
-//Uses a constructor to make all cards in the deck grabbing an array of cards (deck) and resets so this function can only be created once preventing making multiple decks.
+* Uses a constructor to make all cards in the deck grabbing an array of cards (deck) and resets so this function can only be created once preventing making multiple decks.
 
 Deck.prototype.draw()
-//Takes as a parameter of number, where number is the name of cards to be drawn from the deck. Also, these drawn cards will be removed from the deck.
+* Takes as a parameter of number, where number is the name of cards to be drawn from the deck. Also, these drawn cards will be removed from the deck.
 
 Deck.prototype.reset()
-//Makes unique Cards for a deck containing card name, suit and points. Taking in consideration that J, Q and K are worth 10 points.
+* Makes unique Cards for a deck containing card name, suit and points. Taking in consideration that J, Q and K are worth 10 points.
 
 Deck.prototype.shuffle()
-//Takes the Deck of cards and shuffles them to be displayed randomly
-
+* Takes the Deck of cards and shuffles them to be displayed randomly
 
 ### App Object
 
