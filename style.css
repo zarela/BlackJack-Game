@@ -1,82 +1,85 @@
-body{
-  background: url("https://mxg.cdnbf.net/mexchangeblackjack/turbo/assets/gameView/tableBackground.png");
+body {
+  background: url("assets/table-background.png");
   background-size: cover;
-  /*height: 100vh;*/
-  /*width: 100vw;*/
+  background-repeat: no-repeat;
+  height: 100vh;
   color: white;
-  font-family: 'Mitr', sans-serif;
+  font-family: "Mitr", sans-serif;
 }
-.logo{
-  font-family: 'Ewert', cursive;
+.logo {
+  font-family: "Ewert";
   color: #f7f0c4;
-  font-size: 40px;
-  display:flex;
+  font-size: 2em;
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.board{
+.board {
   padding: 1em;
 }
-.credit{
-  margin-left:100px;
+.credit {
+  margin-left: 100px;
 }
-.money-section{
+.money-section {
   padding: 1em;
-  display:inline-block;
+  display: inline-block;
 }
-.game-buttons, .start-section{
-  display:flex;
+.game-buttons,
+.start-section {
+  display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 2em;
 }
-#hit, #stand, #new-hand{
-  box-shadow: 5px 5px 5px rgba(0, 0, 5, .6);
+#hit,
+#stand,
+#new-hand {
+  box-shadow: 5px 5px 5px rgba(0, 0, 5, 0.6);
 }
-#start{
+#start {
   color: white;
   background: grey;
   padding: 0.5em;
   width: 100px;
   border-radius: 10px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 5, .6);
+  box-shadow: 5px 5px 5px rgba(0, 0, 5, 0.6);
 }
-.init-end-controls{
-  display:flex;
+.init-end-controls {
+  display: flex;
   align-content: flex-end;
   justify-content: flex-end;
   padding: 1em;
 }
-#bet-section{
+#bet-section {
   align-content: right;
 }
-#dealer-cards, #player-cards{
-  display:flex;
+#dealer-cards,
+#player-cards {
+  display: flex;
   align-content: flex-end;
   justify-content: left;
   padding: 0.5em;
   margin-left: 40px;
 }
-.newCardsD, .newCardsP{
+.newCardsD,
+.newCardsP {
   padding: 0.5em;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /*align-content: flex-end;
-  justify-content: space-around;*/
   text-align: center;
   font: 20px/20px Georgia, Times New Roman, serif;
   float: left;
   color: #5e3811;
   background: #00a651;
   margin-right: 10px;
-  width: 120px;
-  height: 190px;
+  width: 80px;
+  height: 150px;
   border-radius: 10px;
   border: 3px solid black;
   background: #f7f0c4;
-  -webkit-box-shadow: 3px 3px 37px rgba(0,0,0,0.6);
-  box-shadow: 3px 3px 37px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 3px 3px 37px rgba(0, 0, 0, 0.6);
+  box-shadow: 3px 3px 37px rgba(0, 0, 0, 0.6);
   outline: 3px solid #5e3811;
   outline-offset: -18px;
 }
