@@ -1,0 +1,25 @@
+{
+  "name": "blackjack-game",
+  "version": "1.0.0",
+  "description": "Black Jack game",
+  "main": "game.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarela/BlackJack-Game.git"
+  },
+  "author": "Zarela Graves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zarela/BlackJack-Game/issues"
+  },
+  "homepage": "https://github.com/zarela/BlackJack-Game#readme",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5"
+  }
+}
