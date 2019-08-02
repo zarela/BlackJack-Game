@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <title>ZG Black Jack</title>
@@ -15,40 +15,17 @@
     ></script>
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <script src="game.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
   </head>
   <body>
-    <div class="logo"><p>♠️ ♦️ Black Jack ♣️ ♥️</p></div>
-    <div class="board">
-      <p>Dealer's cards:</p>
-      <div id="dealer-cards"></div>
-      <p>Player's cards:</p>
-      <div id="player-cards"></div>
-    </div>
-    <form class="controls" action="index.html" method="post">
-      <div class="money-section">
-        <div id="credit"><p>You have: $100.00</p></div>
-        <div id="bet-section">
-          <input id="bet" name="name" value="" />
-          <input id="bet-button" type="button" name="name" value="BET" />
-        </div>
-      </div>
-      <div class="game-buttons">
-        <input id="hit" type="button" name="hit" value="HIT" />
-        <input id="stand" type="button" name="stand" value="STAND" />
-        <input id="new-hand" type="button" name="new-hand" value="NEW HAND" />
-      </div>
-      <div class="start-section">
-        <input id="start" type="button" name="start" value="START" />
-      </div>
-      <div class="init-end-controls">
-        <input
-          id="reset"
-          type="button"
-          name="name"
-          value="RESET/NEW GAME"
-        /><br />
-        <input id="quit" type="button" name="name" value="QUIT GAME" />
-      </div>
-    </form>
+    <div id="root"></div>
+    <script src="lib/game-ui.js"></script>
   </body>
 </html>
