@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Black Jack game",
   "main": "game.js",
-  "scripts": {},
+  "scripts": {
+    "build": "babel src -d lib"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zarela/BlackJack-Game.git"
